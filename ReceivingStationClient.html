@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Receiving station</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="app1.js"></script>
+      </head>
+  <body ng-app="shippingstation" ng-controller="shipmentcontroller">
+
+     <button type="button" class="btn btn-primary" ng-click="funcA()"> Pending Orders</button>
+
+<!--
+    <button ng-click="funcB()">Trigger B</button>
+  -->
+    <h4>Order List</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>OrderID</td>
+          <td>ProductID</td>
+          <td>Quantity</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="order in users.Orders | groupBy:'orderID'">
+          <td>
+            <span class="groupHeader" ng-show="order.group_by_key">{{order.orderID}}</span>
+          </td>
+          <td>
+            <span class="groupValue">{{order.name}}</span>
+          </td>
+
+          <td>
+              <span class="groupValue">{{order.quantity}}</span>
+          </td>
+        </tr>
+      </tbody>
+</table>
+
+<!-- <h4>Ship List</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>OrderID</td>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="order in users.Orders | groupBy:'orderID'">
+      <td>
+
+        <a  class="groupHeader" ng-show="order.group_by_key" ng-href="http://1fee38b1.ngrok.io/api/markOrderFilled/{{order.orderID}}">Click here to mark order id {{order.orderID}} as shipped</a>
+      </td>
+
+    </tr>
+  </tbody>
+</table> -->
+
+<button type="button" class="btn btn-info" ng-click="funcC()">Call Bot 1</button>
+<button type="button" class="btn btn-info" ng-click="funcD()">Call Bot 2</button>
+<button type="button" class="btn btn-info" ng-click="funcE()">Maintainence</button>
+
+<!--
+
+<a href="http://cbd0b3ab.ngrok.io/bot1" target="_blank">Go Bot1</a>
+<a href="http://cbd0b3ab.ngrok.io/bot2" target="_blank">Go Bot2</a>
+<a href="http://cbd0b3ab.ngrok.io/maintenance" target="_blank">Maintainence</a> -->
+
+  </body>
+</html>
