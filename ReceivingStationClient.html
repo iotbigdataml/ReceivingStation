@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Receiving station</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="ReceivingStation.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="ReceivingStation.js"></script>
+  </head>
+
+  <body ng-app="receivingstation" ng-controller="receivingcontroller">
+
+
+<section>
+     <h1 class="table-title">Team 2 - Orders List</h1>
+   <div>
+    <table>
+      <thead>
+        <tr>
+          <th style="font-weight:100">OrderID</th>
+          <th style="font-weight:100">ProductID</th>
+          <th style="font-weight:100">Quantity</th>
+        </tr>
+    </thead>
+  </table>
+</div>
+<div class="tbl-content">
+<table class="table-fill">
+      <tbody class="table-hover">
+        <tr ng-repeat="order in users.Orders | groupBy:'orderID'">
+          <td>
+            <span class="groupHeader" ng-show="order.group_by_key">{{order.orderID}}</span>
+          </td>
+          <td>
+            <span class="groupValue">{{order.name}}</span>
+          </td>
+
+          <td>
+              <span class="groupValue">{{order.quantity}}</span>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</>
+
+<div class="centered">
+<button class="large green button" ng-click="botone()">Call Bot 1</button>
+<button class="large green button" ng-click="bottwo()">Call Bot 2</button>
+<button class="large green button" ng-click="maintainence()">Maintainence</button>
+</div>
+
+    <!-- <button type="button" class="btn btn-info" ng-click="botone()">Call Bot 1</button>
+    <button type="button" class="btn btn-info" ng-click="bottwo()">Call Bot 2</button>
+    <button type="button" class="btn btn-info" ng-click="maintenance()">Maintainence</button> -->
+</section>
+  </body>
+</html>
