@@ -61,7 +61,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 
 // Function to put bots on maintenance
 
-        $scope.maintainence = function(){
+        $scope.maintainenceOn = function(){
           $http({
               method: 'GET',
               url: 'http://29041a89.ngrok.io/maintenance'
@@ -82,7 +82,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 
 // Function to put bots out of maintenance
 
-                $scope.maintainence = function(){
+                $scope.maintainenceOff = function(){
                   $http({
                       method: 'GET',
                       url: 'http://29041a89.ngrok.io/maintenance'
