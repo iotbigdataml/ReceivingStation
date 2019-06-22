@@ -80,6 +80,25 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 
         };
 
+// Function to put bots out of maintenance
+
+                $scope.maintainence = function(){
+                  $http({
+                      method: 'GET',
+                      url: 'http://29041a89.ngrok.io/maintenance'
+
+                    }).then(function successCallback(response) {
+
+
+                    }, function errorCallback(response) {
+
+                      alert("Error. Try Again!");
+
+                    });
+
+
+                };
+
 
 
 
