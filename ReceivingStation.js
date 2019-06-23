@@ -6,7 +6,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
  setInterval(function(){
   $http({
       method: 'GET',
-      url: '/api/orders/pending'
+      url: 'http://127.0.0.1:8081/test.txt'
 
     }).then(function successCallback(response) {
 
