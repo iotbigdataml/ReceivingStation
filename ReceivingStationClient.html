@@ -63,7 +63,7 @@
          <th style="font-weight:100">OrderID</th>
          <th style="font-weight:100">ProductID</th>
          <th style="font-weight:100">Quantity</th>
-         <th style="font-weight:100">Status</th>
+
        </tr>
    </thead>
  </table>
@@ -83,10 +83,6 @@
              <span class="groupValue">{{order.quantity}}</span>
          </td>
 
-         <td>
-         <button class="large green button groupHeader" ng-show="order.group_by_key" ng-click="loadOrder(order.orderID)">Loaded</button>
-         </td>
-
        </tr>
      </tbody>
    </table>
@@ -96,7 +92,7 @@
 </>
 
 <div class="centered">
-<button style="margin-top: 3%;"class="large green button" ng-click="botone()">Call Bot 1</button>
+<button style="margin-top: 1%;"class="large green button" ng-click="botone()">Call Bot 1</button>
 <button class="large green button" ng-click="bottwo()">Call Bot 2</button>
 <button class="large green button" ng-click="maintainenceOn()">Maintainence On</button>
 <button class="large green button" ng-click="maintainenceOff()">Maintainence Off</button>
