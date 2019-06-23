@@ -6,7 +6,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
  setInterval(function(){
   $http({
       method: 'GET',
-      url: 'http://127.0.0.1:8080/test.txt'
+      url: '/api/orders/pending'
 
     }).then(function successCallback(response) {
 
@@ -98,6 +98,23 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 
 
                 };
+
+                //function to change order Status from pending to loaded
+                $scope.loadOrder = function(id){
+
+
+                        $http({
+                            method: 'GET',
+                            url: 'http://6ec0bb0e.ngrok.io/api/markOrderFilled/'+id
+
+                          }).then(function successCallback(response) {
+
+                          }, function errorCallback(response) {
+
+                            alert("Error. Try Again");
+                          });
+
+                      }
 
 
 

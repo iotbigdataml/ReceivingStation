@@ -22,6 +22,7 @@
           <th style="font-weight:100">OrderID</th>
           <th style="font-weight:100">ProductID</th>
           <th style="font-weight:100">Quantity</th>
+          <th style="font-weight:100">Status</th>
         </tr>
     </thead>
   </table>
@@ -39,6 +40,10 @@
 
           <td>
               <span class="groupValue">{{order.quantity}}</span>
+          </td>
+
+          <td>
+          <button class="large green button groupHeader" ng-show="order.group_by_key" ng-click="loadOrder(order.orderID)">Fulfill</button>
           </td>
 
         </tr>
