@@ -1,12 +1,27 @@
 var app=angular.module("receivingstation",[]);
 app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 
-// Fetch data from url every one second
 
+  $http({
+    method: 'GET',
+    url: 'http://127.0.0.1:8081/url.txt'
+  }).then(function successCallback(response) {
+
+    $scope.urlobj = response.data;
+
+  }, function errorCallback(response) {
+
+    alert("Error. Try Again!");
+
+  })
+
+
+
+// Fetch data from url every one second
  setInterval(function(){
   $http({
       method: 'GET',
-      url: 'http://a6bb270c.ngrok.io/api/orders/pending'
+      url: $scope.urlobj.url +'/api/orders/pending'
 
     }).then(function successCallback(response) {
 
@@ -22,7 +37,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 setInterval(function(){
  $http({
      method: 'GET',
-     url: 'http://a6bb270c.ngrok.io/api/orders/loaded'
+     url: $scope.urlobj.url +'/api/orders/loaded'
 
    }).then(function successCallback(response) {
 
@@ -38,7 +53,7 @@ setInterval(function(){
 setInterval(function(){
  $http({
      method: 'GET',
-     url: 'http://a6bb270c.ngrok.io/api/orders/cancelled'
+     url: $scope.urlobj.url +'/api/orders/cancelled'
 
    }).then(function successCallback(response) {
 
@@ -140,7 +155,7 @@ setInterval(function(){
 
                         $http({
                             method: 'POST',
-                            url: 'http://a6bb270c.ngrok.io/api/orders/update/'+id,
+                            url: $scope.urlobj.url +'/api/orders/update/'+id,
                             data: {"status":"loaded"}
 
                           }).then(function successCallback(response) {
