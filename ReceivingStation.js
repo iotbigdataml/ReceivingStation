@@ -6,18 +6,53 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
  setInterval(function(){
   $http({
       method: 'GET',
-      url: 'http://127.0.0.1:8081/test.txt'
+      url: 'http://136da088.ngrok.io/api/orders/pending'
 
     }).then(function successCallback(response) {
 
-      $scope.users = response.data;
+      $scope.pending = response.data;
 
     }, function errorCallback(response) {
 
-      alert("Error. Try Again!");
+      // alert("Error. Try Again!");
 
     })
-},1000);
+},10000);
+
+setInterval(function(){
+ $http({
+     method: 'GET',
+     url: 'http://136da088.ngrok.io/api/orders/loaded'
+
+   }).then(function successCallback(response) {
+
+     $scope.loaded = response.data;
+
+   }, function errorCallback(response) {
+
+     //alert("Error. Try Again!");
+
+   })
+},10000);
+
+setInterval(function(){
+ $http({
+     method: 'GET',
+     url: 'http://136da088.ngrok.io/api/orders/cancelled'
+
+   }).then(function successCallback(response) {
+
+     $scope.cancelled = response.data;
+
+   }, function errorCallback(response) {
+
+     //alert("Error. Try Again!");
+
+   })
+},10000);
+
+
+
 
 // Function to control bot one
         $scope.botone = function(){
@@ -105,7 +140,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 
                         $http({
                             method: 'GET',
-                            url: 'http://6ec0bb0e.ngrok.io/api/markOrderFilled/'+id
+                            url: ''+id
 
                           }).then(function successCallback(response) {
 
