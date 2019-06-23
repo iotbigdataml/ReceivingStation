@@ -6,7 +6,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
  setInterval(function(){
   $http({
       method: 'GET',
-      url: 'http://136da088.ngrok.io/api/orders/pending'
+      url: 'http://a6bb270c.ngrok.io/api/orders/pending'
 
     }).then(function successCallback(response) {
 
@@ -22,7 +22,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 setInterval(function(){
  $http({
      method: 'GET',
-     url: 'http://136da088.ngrok.io/api/orders/loaded'
+     url: 'http://a6bb270c.ngrok.io/api/orders/loaded'
 
    }).then(function successCallback(response) {
 
@@ -38,7 +38,7 @@ setInterval(function(){
 setInterval(function(){
  $http({
      method: 'GET',
-     url: 'http://136da088.ngrok.io/api/orders/cancelled'
+     url: 'http://a6bb270c.ngrok.io/api/orders/cancelled'
 
    }).then(function successCallback(response) {
 
@@ -139,8 +139,9 @@ setInterval(function(){
 
 
                         $http({
-                            method: 'GET',
-                            url: ''+id
+                            method: 'POST',
+                            url: 'http://a6bb270c.ngrok.io/api/orders/update/'+id,
+                            data: {"status":"loaded"}
 
                           }).then(function successCallback(response) {
 
