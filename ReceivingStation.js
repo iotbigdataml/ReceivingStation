@@ -167,6 +167,24 @@ setInterval(function(){
 
                       }
 
+                      $scope.cancelOrder = function(id){
+
+
+          $http({
+              method: 'POST',
+              url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/update/'+id,
+              data: {"status":"returned"}
+
+            }).then(function successCallback(response) {
+
+            }, function errorCallback(response) {
+
+            console.log("Error. Try Again!");
+            });
+
+        }
+
+
 
 
 
