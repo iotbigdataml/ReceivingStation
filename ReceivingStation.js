@@ -21,7 +21,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
  setInterval(function(){
   $http({
       method: 'GET',
-      url: 'http://b41155bc.ngrok.io/api/orders/pending'
+      url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/pending'
 
     }).then(function successCallback(response) {
 
@@ -32,12 +32,12 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
       // alert("Error. Try Again!");
 
     })
-},10000);
+},1000);
 
 setInterval(function(){
  $http({
      method: 'GET',
-     url: 'http://b41155bc.ngrok.io/api/orders/loaded'
+     url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/loaded'
 
    }).then(function successCallback(response) {
 
@@ -48,12 +48,12 @@ setInterval(function(){
      //alert("Error. Try Again!");
 
    })
-},10000);
+},1000);
 
 setInterval(function(){
  $http({
      method: 'GET',
-     url: 'http://b41155bc.ngrok.io/api/orders/cancelled'
+     url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/cancelled'
 
    }).then(function successCallback(response) {
 
@@ -64,7 +64,7 @@ setInterval(function(){
      //alert("Error. Try Again!");
 
    })
-},10000);
+},1000);
 
 
 
@@ -73,7 +73,7 @@ setInterval(function(){
         $scope.botone = function(){
           $http({
               method: 'GET',
-              url: 'http://b41155bc.ngrok.io/bot1'
+              url: 'http://886c3ff2.ngrok.io/bot1'
 
             }).then(function successCallback(response) {
 
@@ -93,7 +93,7 @@ setInterval(function(){
         $scope.bottwo = function(){
           $http({
               method: 'GET',
-              url: 'http://b41155bc.ngrok.io/bot2'
+              url: 'http://886c3ff2.ngrok.io/bot2'
 
             }).then(function successCallback(response) {
 
@@ -114,7 +114,7 @@ setInterval(function(){
         $scope.maintainenceOn = function(){
           $http({
               method: 'GET',
-              url: 'http://b41155bc.ngrok.io/entermaintenance'
+              url: 'http://886c3ff2.ngrok.io/entermaintenance'
 
             }).then(function successCallback(response) {
 
@@ -135,7 +135,7 @@ setInterval(function(){
                 $scope.maintainenceOff = function(){
                   $http({
                       method: 'GET',
-                      url: 'http://b41155bc.ngrok.io/exitmaintenance'
+                      url: 'http://886c3ff2.ngrok.io/exitmaintenance'
 
                     }).then(function successCallback(response) {
 
@@ -155,7 +155,7 @@ setInterval(function(){
 
                         $http({
                             method: 'POST',
-                            url:'http://b41155bc.ngrok.io/api/orders/update/'+id,
+                            url:'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/update/'+id,
                             data: {"status":"loaded"}
 
                           }).then(function successCallback(response) {
