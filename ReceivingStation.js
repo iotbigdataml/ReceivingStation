@@ -1,19 +1,19 @@
 var app=angular.module("receivingstation",[]);
 app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 
-
-  $http({
-    method: 'GET',
-    url: 'http://127.0.0.1:8081/url.txt'
-  }).then(function successCallback(response) {
-
-    $scope.urlobj = response.data;
-
-  }, function errorCallback(response) {
-
-    alert("Error. Try Again!");
-
-  })
+  //
+  // $http({
+  //   method: 'GET',
+  //   url: 'http://127.0.0.1:8081/url.txt'
+  // }).then(function successCallback(response) {
+  //
+  //   $scope.urlobj = response.data;
+  //
+  // }, function errorCallback(response) {
+  //
+  //   alert("Error. Try Again!");
+  //
+  // })
 
 
 
@@ -21,7 +21,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
  setInterval(function(){
   $http({
       method: 'GET',
-      url: $scope.urlobj.url +'/api/orders/pending'
+      url: 'http://b41155bc.ngrok.io/api/orders/pending'
 
     }).then(function successCallback(response) {
 
@@ -37,7 +37,7 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 setInterval(function(){
  $http({
      method: 'GET',
-     url: $scope.urlobj.url +'/api/orders/loaded'
+     url: 'http://b41155bc.ngrok.io/api/orders/loaded'
 
    }).then(function successCallback(response) {
 
@@ -53,7 +53,7 @@ setInterval(function(){
 setInterval(function(){
  $http({
      method: 'GET',
-     url: $scope.urlobj.url +'/api/orders/cancelled'
+     url: 'http://b41155bc.ngrok.io/api/orders/cancelled'
 
    }).then(function successCallback(response) {
 
@@ -73,7 +73,7 @@ setInterval(function(){
         $scope.botone = function(){
           $http({
               method: 'GET',
-              url: 'http://29041a89.ngrok.io/bot1'
+              url: 'http://b41155bc.ngrok.io/bot1'
 
             }).then(function successCallback(response) {
 
@@ -93,7 +93,7 @@ setInterval(function(){
         $scope.bottwo = function(){
           $http({
               method: 'GET',
-              url: 'http://29041a89.ngrok.io/bot2'
+              url: 'http://b41155bc.ngrok.io/bot2'
 
             }).then(function successCallback(response) {
 
@@ -114,7 +114,7 @@ setInterval(function(){
         $scope.maintainenceOn = function(){
           $http({
               method: 'GET',
-              url: 'http://29041a89.ngrok.io/maintenance'
+              url: 'http://b41155bc.ngrok.io/entermaintenance'
 
             }).then(function successCallback(response) {
 
@@ -135,7 +135,7 @@ setInterval(function(){
                 $scope.maintainenceOff = function(){
                   $http({
                       method: 'GET',
-                      url: 'http://29041a89.ngrok.io/maintenance'
+                      url: 'http://b41155bc.ngrok.io/exitmaintenance'
 
                     }).then(function successCallback(response) {
 
@@ -155,7 +155,7 @@ setInterval(function(){
 
                         $http({
                             method: 'POST',
-                            url: $scope.urlobj.url +'/api/orders/update/'+id,
+                            url:'http://b41155bc.ngrok.io/api/orders/update/'+id,
                             data: {"status":"loaded"}
 
                           }).then(function successCallback(response) {
