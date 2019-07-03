@@ -56,18 +56,6 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
 
   // Function to control bot one
   $scope.botone = function () {
-    var parameter = JSON.stringify({ "station": "RECV", "bot": "11" });
-    url = 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/trips/update/bot/departure'
-    $http.post(url, parameter).
-      success(function (data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        console.log(data);
-      }).
-      error(function (data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-      });
 
     $http({
       method: 'GET',
@@ -86,21 +74,27 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
 
   };
 
+
+$scope.botonedata = function (){
+  var parameter = JSON.stringify({ "station": "RECV", "bot": "11" });
+  url = 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/trips/update/bot/departure'
+  $http.post(url, parameter).
+    success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      console.log(data);
+    }).
+    error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+
+
+
+};
   // Function to control bot two
 
   $scope.bottwo = function () {
-    var parameter = JSON.stringify({ "station": "RECV", "bot": "12" });
-    url = 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/trips/update/bot/departure'
-    $http.post(url, parameter).
-      success(function (data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        console.log(data);
-      }).
-      error(function (data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-      });
 
 
     $http({
@@ -120,6 +114,25 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
 
 
   };
+
+$scope.bottwodata = function (){
+
+  var parameter = JSON.stringify({ "station": "RECV", "bot": "12" });
+  url = 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/trips/update/bot/departure'
+  $http.post(url, parameter).
+    success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      console.log(data);
+    }).
+    error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+
+
+
+};
 
   // Function to put bots on maintenance
 
