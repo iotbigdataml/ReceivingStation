@@ -1,7 +1,7 @@
 var app = angular.module("receivingstation", []);
 app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $http) {
 
-  $scope.server_url="http://fae1f02e.ngrok.io/api";
+  $scope.server_url="http://9ee6a80e.ngrok.io/api";
   $scope.bot_url="http://ad289656.ngrok.io";
 
 
