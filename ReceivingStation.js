@@ -1,5 +1,5 @@
-var app=angular.module("receivingstation",[]);
-app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
+var app = angular.module("receivingstation", []);
+app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $http) {
 
   //
   // $http({
@@ -17,9 +17,9 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
 
 
 
-// Fetch data from url every one second
- setInterval(function(){
-  $http({
+  // Fetch data from url every one second
+  setInterval(function () {
+    $http({
       method: 'GET',
       url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/pending'
 
@@ -32,157 +32,181 @@ app.controller("receivingcontroller",['$scope','$http', function($scope, $http){
       // alert("Error. Try Again!");
 
     })
-},1000);
+  }, 1000);
 
-setInterval(function(){
- $http({
-     method: 'GET',
-     url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/loaded'
+  setInterval(function () {
+    $http({
+      method: 'GET',
+      url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/loaded'
 
-   }).then(function successCallback(response) {
+    }).then(function successCallback(response) {
 
-     $scope.loaded = response.data;
+      $scope.loaded = response.data;
 
-   }, function errorCallback(response) {
+    }, function errorCallback(response) {
 
-     //alert("Error. Try Again!");
+      //alert("Error. Try Again!");
 
-   })
-},1000);
+    })
+  }, 1000);
 
-setInterval(function(){
- $http({
-     method: 'GET',
-     url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/cancelled'
+  setInterval(function () {
+    $http({
+      method: 'GET',
+      url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/cancelled'
 
-   }).then(function successCallback(response) {
+    }).then(function successCallback(response) {
 
-     $scope.cancelled = response.data;
+      $scope.cancelled = response.data;
 
-   }, function errorCallback(response) {
+    }, function errorCallback(response) {
 
-     //alert("Error. Try Again!");
+      //alert("Error. Try Again!");
 
-   })
-},1000);
+    })
+  }, 1000);
 
+  // Function to control bot one
+  $scope.botone = function () {
+    var parameter = JSON.stringify({ "station": "RECV", "bot": "11" });
+    url = 'http://fae1f02e.ngrok.io/api//trips/update/bot/departure'
+    $http.post(url, parameter).
+      success(function (data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log(data);
+      }).
+      error(function (data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
 
+    $http({
+      method: 'GET',
+      url: 'http://886c3ff2.ngrok.io/bot1'
 
+    }).then(function successCallback(response) {
 
-// Function to control bot one
-        $scope.botone = function(){
-          $http({
-              method: 'GET',
-              url: 'http://886c3ff2.ngrok.io/bot1'
 
-            }).then(function successCallback(response) {
 
+    }, function errorCallback(response) {
 
+      alert("Error. Try Again!");
 
-            }, function errorCallback(response) {
+    });
 
-              alert("Error. Try Again!");
 
-            });
+  };
 
+  // Function to control bot two
 
-        };
+  $scope.bottwo = function () {
+    var parameter = JSON.stringify({ "station": "RECV", "bot": "12" });
+    url = 'http://fae1f02e.ngrok.io/api//trips/update/bot/departure'
+    $http.post(url, parameter).
+      success(function (data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log(data);
+      }).
+      error(function (data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
 
-// Function to control bot two
 
-        $scope.bottwo = function(){
-          $http({
-              method: 'GET',
-              url: 'http://886c3ff2.ngrok.io/bot2'
+    $http({
+      method: 'GET',
+      url: 'http://886c3ff2.ngrok.io/bot2'
 
-            }).then(function successCallback(response) {
+    }).then(function successCallback(response) {
 
 
 
 
-            }, function errorCallback(response) {
+    }, function errorCallback(response) {
 
-              alert("Error. Try Again!");
+      alert("Error. Try Again!");
 
-            });
+    });
 
 
-        };
+  };
 
-// Function to put bots on maintenance
+  // Function to put bots on maintenance
 
-        $scope.maintainenceOn = function(){
-          $http({
-              method: 'GET',
-              url: 'http://886c3ff2.ngrok.io/entermaintenance'
+  $scope.maintainenceOn = function () {
+    $http({
+      method: 'GET',
+      url: 'http://886c3ff2.ngrok.io/entermaintenance'
 
-            }).then(function successCallback(response) {
+    }).then(function successCallback(response) {
 
 
 
 
-            }, function errorCallback(response) {
+    }, function errorCallback(response) {
 
-              alert("Error. Try Again!");
+      alert("Error. Try Again!");
 
-            });
+    });
 
 
-        };
+  };
 
-// Function to put bots out of maintenance
+  // Function to put bots out of maintenance
 
-                $scope.maintainenceOff = function(){
-                  $http({
-                      method: 'GET',
-                      url: 'http://886c3ff2.ngrok.io/exitmaintenance'
+  $scope.maintainenceOff = function () {
+    $http({
+      method: 'GET',
+      url: 'http://886c3ff2.ngrok.io/exitmaintenance'
 
-                    }).then(function successCallback(response) {
+    }).then(function successCallback(response) {
 
 
-                    }, function errorCallback(response) {
+    }, function errorCallback(response) {
 
-                      alert("Error. Try Again!");
+      alert("Error. Try Again!");
 
-                    });
+    });
 
 
-                };
+  };
 
-                //function to change order Status from pending to loaded
-                $scope.loadOrder = function(id){
+  //function to change order Status from pending to loaded
+  $scope.loadOrder = function (id) {
 
 
-                        $http({
-                            method: 'POST',
-                            url:'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/update/'+id,
-                            data: {"status":"loaded"}
+    $http({
+      method: 'POST',
+      url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/update/' + id,
+      data: { "status": "loaded" }
 
-                          }).then(function successCallback(response) {
+    }).then(function successCallback(response) {
 
-                          }, function errorCallback(response) {
+    }, function errorCallback(response) {
 
-                            alert("Error. Try Again");
-                          });
+      alert("Error. Try Again");
+    });
 
-                      }
+  }
 
-                      $scope.cancelOrder = function(id){
+  $scope.cancelOrder = function (id) {
 
 
-          $http({
-              method: 'POST',
-              url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/update/'+id,
-              data: {"status":"returned"}
+    $http({
+      method: 'POST',
+      url: 'http://ec2-35-170-187-70.compute-1.amazonaws.com:3000/api/orders/update/' + id,
+      data: { "status": "returned" }
 
-            }).then(function successCallback(response) {
+    }).then(function successCallback(response) {
 
-            }, function errorCallback(response) {
+    }, function errorCallback(response) {
 
-            console.log("Error. Try Again!");
-            });
+      console.log("Error. Try Again!");
+    });
 
-        }
+  }
 
 
 
@@ -192,29 +216,29 @@ setInterval(function(){
 
 // filter to group orders by ID
 
-app.filter("groupBy",["$parse","$filter",function($parse,$filter){
-  return function(array,groupByField){
-    var result	= [];
-            var prev_item = null;
-            var groupKey = false;
-            var filteredData = $filter('orderBy')(array,groupByField);
-            for(var i=0;i<filteredData.length;i++){
-              groupKey = false;
-              if(prev_item !== null){
-                if(prev_item[groupByField] !== filteredData[i][groupByField]){
-                  groupKey = true;
-                }
-              } else {
-                groupKey = true;
-              }
-              if(groupKey){
-                filteredData[i]['group_by_key'] =true;
-              } else {
-                filteredData[i]['group_by_key'] =false;
-              }
-              result.push(filteredData[i]);
-              prev_item = filteredData[i];
-            }
-            return result;
+app.filter("groupBy", ["$parse", "$filter", function ($parse, $filter) {
+  return function (array, groupByField) {
+    var result = [];
+    var prev_item = null;
+    var groupKey = false;
+    var filteredData = $filter('orderBy')(array, groupByField);
+    for (var i = 0; i < filteredData.length; i++) {
+      groupKey = false;
+      if (prev_item !== null) {
+        if (prev_item[groupByField] !== filteredData[i][groupByField]) {
+          groupKey = true;
+        }
+      } else {
+        groupKey = true;
+      }
+      if (groupKey) {
+        filteredData[i]['group_by_key'] = true;
+      } else {
+        filteredData[i]['group_by_key'] = false;
+      }
+      result.push(filteredData[i]);
+      prev_item = filteredData[i];
+    }
+    return result;
   }
 }]);
