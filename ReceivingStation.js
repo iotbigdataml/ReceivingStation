@@ -1,7 +1,8 @@
 var app = angular.module("receivingstation", []);
 app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $http) {
 
-
+  $scope.server_url="http://fae1f02e.ngrok.io/api";
+  $scope.bot_url="http://ad289656.ngrok.io";
 
 
 
@@ -9,7 +10,7 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
   setInterval(function () {
     $http({
       method: 'GET',
-      url: 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/orders/pending'
+      url: $scope.server_url+'/orders/pending'
 
     }).then(function successCallback(response) {
 
@@ -25,7 +26,7 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
   setInterval(function () {
     $http({
       method: 'GET',
-      url: 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/orders/loaded'
+      url: $scope.server_url+'/orders/loaded'
 
     }).then(function successCallback(response) {
 
@@ -41,7 +42,7 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
   setInterval(function () {
     $http({
       method: 'GET',
-      url: 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/orders/cancelled'
+      url: $scope.server_url+'/orders/cancelled'
 
     }).then(function successCallback(response) {
 
@@ -59,7 +60,7 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
 
     $http({
       method: 'GET',
-      url: 'http://ad289656.ngrok.io/bot1'
+      url: $scope.bot_url+'/bot1'
 
     }).then(function successCallback(response) {
 
@@ -77,7 +78,7 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
 
 $scope.botonedata = function (){
   var parameter = JSON.stringify({ "station": "RECV", "bot": "11" });
-  url = 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/trips/update/bot/departure'
+  url = $scope.server_url+'/trips/update/bot/departure'
   $http.post(url, parameter).
     success(function (data, status, headers, config) {
       // this callback will be called asynchronously
@@ -99,7 +100,7 @@ $scope.botonedata = function (){
 
     $http({
       method: 'GET',
-      url: 'http://ad289656.ngrok.io/bot2'
+      url: $scope.bot_url+'/bot2'
 
     }).then(function successCallback(response) {
 
@@ -118,7 +119,7 @@ $scope.botonedata = function (){
 $scope.bottwodata = function (){
 
   var parameter = JSON.stringify({ "station": "RECV", "bot": "12" });
-  url = 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/trips/update/bot/departure'
+  url = $scope.server_url+'/trips/update/bot/departure'
   $http.post(url, parameter).
     success(function (data, status, headers, config) {
       // this callback will be called asynchronously
@@ -139,7 +140,7 @@ $scope.bottwodata = function (){
   $scope.maintainenceOn = function () {
     $http({
       method: 'GET',
-      url: 'http://ad289656.ngrok.io/entermaintenance'
+      url: $scope.bot_url+'/entermaintenance'
 
     }).then(function successCallback(response) {
 
@@ -160,7 +161,7 @@ $scope.bottwodata = function (){
   $scope.maintainenceOff = function () {
     $http({
       method: 'GET',
-      url: 'http://ad289656.ngrok.io/exitmaintenance'
+      url: $scope.bot_url+'/exitmaintenance'
 
     }).then(function successCallback(response) {
 
@@ -180,7 +181,7 @@ $scope.bottwodata = function (){
 
     $http({
       method: 'POST',
-      url: 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/orders/update/' + id,
+      url: $scope.server_url+'/orders/update/' + id,
       data: { "status": "loaded" }
 
     }).then(function successCallback(response) {
@@ -197,7 +198,7 @@ $scope.bottwodata = function (){
 
     $http({
       method: 'POST',
-      url: 'http://ec2-34-238-240-46.compute-1.amazonaws.com:3000/api/orders/update/' + id,
+      url: $scope.server_url+'/orders/update/' + id,
       data: { "status": "returned" }
 
     }).then(function successCallback(response) {
