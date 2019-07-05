@@ -76,6 +76,45 @@ app.controller("receivingcontroller", ['$scope', '$http', function ($scope, $htt
   };
 
 
+$scope.startmaintenencedata = function() {
+
+  var parameter = JSON.stringify({ "station": "MAINTENANCE_START"});
+  url = $scope.server_url + '/trips/update/bot/maintenance/start'
+  $http.post(url, parameter).
+    success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      console.log(data);
+    }).
+    error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+
+};
+
+$scope.stopmaintenencedata = function() {
+
+  var parameter = JSON.stringify({ "station": "MAINTENANCE_STOP"});
+  url = $scope.server_url + '/trips/update/bot/maintenance/stop'
+  $http.post(url, parameter).
+    success(function (data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      console.log(data);
+    }).
+    error(function (data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+
+};  
+
+
+
+
+
+
 $scope.botonedata = function (){
   var parameter = JSON.stringify({ "station": "RECV", "bot": "11" });
   url = $scope.server_url+'/trips/update/bot/departure'
